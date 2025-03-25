@@ -1,12 +1,10 @@
 class Solution {  
-    static int count; // Global variable to store the number of reverse pairs  
+    static int count; // Global variable to store the number of reverse pairs
 
-    // Function to count reverse pairs between two sorted halves  
+// Function to count reverse pairs between two sorted halves  
     public void inversion(int[] a, int[] b) {  
         int i = 0, j = 0;  // Two pointers to traverse arrays a[] and b[]  
-
-        while (i < a.length && j < b.length) { // Traverse both arrays  
-            // Check if a[i] is greater than twice of b[j]  
+        while (i < a.length && j < b.length) { 
             if ((long) a[i] > ((long) 2 * (long) b[j])) {  
                 count += (a.length - i); // All remaining elements in a[] form valid reverse pairs  
                 j++; // Move j to next element in b[]  
@@ -15,24 +13,21 @@ class Solution {
             }  
         }  
     }  
-
-    // Function to merge two sorted arrays a[] and b[] into c[]  
+// Function to merge two sorted arrays a[] and b[] into c[]  
     public void merge(int[] a, int[] b, int[] c) {  
-        int i = 0, j = 0, k = 0;  // Pointers for a[], b[], and c[]  
-
-        while (i < a.length && j < b.length) { // Merge both arrays until one is exhausted  
-            if (a[i] <= b[j]) {  // If element in a[] is smaller, add it to c[]  
+        int i = 0, j = 0, k = 0;  
+        while (i < a.length && j < b.length) {  
+            if (a[i] <= b[j]) {    
                 c[k++] = a[i++];  
             } else {  
-                c[k++] = b[j++]; // Otherwise, add element from b[] to c[]  
+                c[k++] = b[j++];   
             }  
         }  
-
-        while (j < b.length) { // If any elements are left in b[], copy them  
+        while (j < b.length) { 
             c[k++] = b[j++];  
         }  
 
-        while (i < a.length) { // If any elements are left in a[], copy them  
+        while (i < a.length) {  
             c[k++] = a[i++];  
         }  
     }  
@@ -54,11 +49,7 @@ class Solution {
         inversion(a, b); // Count reverse pairs between sorted halves  
         merge(a, b, arr); // Merge sorted halves back into original array  
 
-        a = null; // Free memory (optional)  
-        b = null; // Free memory (optional)  
     }  
-
-    // Main function to find reverse pairs in the array  
     public int reversePairs(int[] nums) {  
         count = 0;  // Initialize count to 0  
         mergesort(nums); // Sort the array and count reverse pairs  
